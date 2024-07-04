@@ -1,96 +1,68 @@
+package arrays;
 
-package accessModifier1;
-public class A{
-int x=10;//default or package private
-private int y=15;
-public int z=20;
-protected int w=25;
- public static void main(String[] args){
-      A obj = new A();
-      System.out.println(obj.x);
-      System.out.println(obj.y);
-      System.out.println(obj.z);//public accessible everywhere the object is available.
-      System.out.println(obj.w)//protected will not be accessible outside package in non-subclass.
+public class ArrayStudy {
+    static void print(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
-}
-}
-public class B{
- public static void main(String[] args){
-      A obj = new A();
-      System.out.println(obj.x);//default is accessible in same package.
-      System.out.println(obj.y);//private not accessible outside the class.
-}
-}
-package accessModifier2;
-import accessModifier1.A;
-public class C extends A{
-     public static void main(String[] args){
-       A obj = new A();
-       System.out.println(obj.x);//default is not accessible outside the package.
-       System.out.println(obj.z);//public accessible everywhere the object is available.
-       System.out.println(childobj.w);//protected will be visible in different package in subclass,using object of subclass only.
-       System.out.println(childobj.x);//Not visible
-       System.out.prinln(child.y);//Not visible
-}
-}
-public class D{
-     public static void main(String[] args){
-       A obj = new A();
-       System.out.println(obj.x);//default is not accessible outside the package.
-       System.out.println(obj.y);//private not accessible outside the class.
-       System.out.println(obj.z);//public accessible everywhere the object is available.
-       System.out.println(childobj.w);//protected will be visible in different package in subclass,using object of subclass only.
-       System.out.println(childobj.x);//Not visible
-       System.out.prinln(child.y);//Not visible
-       System.out.println(obj.w)//protected will not be accessible outside package in non-subclass.
-      }
-}
-//Encapsulation
-package encapsulation;
-class Demo{
-   private int a;
-   private int b;
-   private int c;
-   private int d;
-   public int getA(){
-     System.out.println("value of A read");
-     return this.a;
-  }
-  public int getB(){
-    System.out.println("Value of B read");
-    return this.b;
-}
-public int getC(){//only read
-      return c;
-}
-public int getD(){
-      return d;
-}
-public class EncapStudy{
-   public static void main(String[] args){
-   //System.out.println(d.a);//not visible because private.
-   public void setA(int a){
-    this.a=a;
-/*
-if(a>100){
-this.a=a;
-System.out.println("Value of A changed to"+a);
-}else{
-System.out.println("Cannot set value outside limits");
-}*/
-}
-public void setB(int b){
-  this.b=b;
-}
-public void setC(int c){
-  this.c=c;
-}
-public void setD(int d){
-  this.d=d;
+    public static void main(String[] args) {
+        // Array Creation Expression
+        int size = 5;
+        int arr[] = new int[size]; // combination of 19 and 20.
+        // int arr[], int[] arr, int []arr => all are the same.
+        // arr = new int[size]; => creation of object.
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
+        System.out.println(arr[2]);
+        System.out.println(arr[3]);
+        System.out.println(arr[4]);
+        print(arr);
+        for (int i = 0; i < size; i++) {
+            arr[i] = i + 1;
+        }
+        print(arr);
+
+        // Array initializers list
+        int arr2[] = {1, 2, 3};
+        print(arr2);
+
+        // If we want to increase the size of an array?
+        int copyArray[] = new int[2 * size]; // create an array of double size.
+        for (int i = 0; i < size; i++) { // copy all elements from old to new array
+            copyArray[i] = arr[i];
+        }
+        copyArray[5] = 6;
+        copyArray[6] = 7;
+        print(copyArray);
+    }
 }
 
-System.out.println(d.getA());
-  d.setA(100);
-System.out.println(d.getA());
-}
+package arrays;
+
+public class PassingArray {
+    static void addOne(int x) {
+        x = x + 1;
+    }
+
+    static void addOne(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i]++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int x = 10;
+        addOne(x);
+        System.out.println(x);
+
+        int arr[] = {1, 2, 3, 4, 5};
+        addOne(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }
